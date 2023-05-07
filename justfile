@@ -18,16 +18,16 @@ serve: setup
 publish: build
     #!/usr/bin/env bash
     set -euxo pipefail
-    rm -rf /tmp/mechtronica
-    mv -f _site /tmp/mechtronica
-    git checkout published_site
+    rm -rf /tmp/randomproduce
+    mv -f _site /tmp/randomproduce
+    git checkout publish
     for f in `ls`
     do
         rm -rf $f
     done
     for f in `ls /tmp/randomproduce`
     do
-        mv /tmp/mechtronica/$f .
+        mv /tmp/randomproduce/$f .
     done
     echo "randomproduce.com" > "CNAME"
     git add -A
