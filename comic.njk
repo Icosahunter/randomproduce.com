@@ -1,11 +1,13 @@
 ---
 layout: template.njk
+permalink: comics/{{comic.slug}}/
 pagination:
     data: comics
     size: 1
     alias: comic
-title: {{comic.title}}
-permalink: "comics/{{comic.slug}}/"
+eleventyComputed:
+  date: {{comic.date}}
+  title: "{{comic.title}}"
 ---
 
 <div class="card w-full w-sm-half m-auto pt-0 pb-0">
