@@ -17,6 +17,10 @@
     --lm-check-color: var(--lm-bg-color);
   }
 
+  body {
+    position: fixed;
+  }
+
   h1 {
     align-self: center;
   }
