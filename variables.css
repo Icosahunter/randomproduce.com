@@ -1,0 +1,36 @@
+:root {
+    --font-family: 'Caveat Brush', sans-serif;
+    --mono-font-family: monospace;
+    --dm-bg-color: #070707;
+    --dm-bg2-color: #151515;
+    --dm-fg-color: #ff61a3;
+    --dm-primary-color: #ff61a3;
+    --dm-border-color: #111;
+    --dm-font-color: #ddd;
+    --dm-check-color: var(--dm-font-color);
+    --lm-bg-color: #fff;
+    --lm-bg2-color: #fafafa;
+    --lm-fg-color: #ccc;
+    --lm-primary-color: #ff61a3;
+    --lm-border-color: #ff61a3;
+    --lm-font-color: #000;
+    --lm-check-color: var(--lm-bg-color);
+  }
+
+  h3 {
+    font-family: 'Patrick Hand SC', sans-serif;
+  }
+
+  #comic-hashtags {
+    width: 40vw;
+  }
+
+  #comic-content {
+    height: 50vh;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    #logo-img {
+        -webkit-filter: invert(1); filter: invert(1);
+    }
+  }

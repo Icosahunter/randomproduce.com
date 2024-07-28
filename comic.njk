@@ -10,59 +10,46 @@ eleventyComputed:
   title: "{{comic.title}}"
 ---
 
-<div class="card w-full w-sm-half m-auto pt-0 pb-0">
+<div class="vbox card center">
+    <div class="hbox header">
     <h3 id="comic-title">{{comic.title}}</h3>
-    <div class="d-flex justify-content-center">
-        <img id="comic-img" class="w-350 w-md-400" src="{{site.url}}/images/{{comic.image}}">
+    <div class="spacer"></div>
+    <p id="comic-date">{{comic.date}}</p>
     </div>
+
+    {% if comic.image %}
+        <img id="comic-content" class="center" src="{{site.url}}/comic-img/{{comic.image}}">
+    {% elif comic.html %}
+        <iframe id="comic-content" class="center" src="{{site.url}}/comic-html/{{comic.html}}"></iframe>
+        <a class="center" href="{{site.url}}/comic-html/{{comic.html}}"> fullscreen </a>
+    {% endif %}
     <p id="comic-hashtags">
-    {% for tag in comic.hashtags %}
-        #{{tag}}{{',' if not loop.last}}
-    {% endfor %}
+        {% for tag in comic.hashtags %}
+            #{{tag}}{{',' if not loop.last}}
+        {% endfor %}
     </p>
-    <div class="d-flex justify-content-center">
-        <nav aria-label="Comic Navigation">
-            <ul class="pagination">
-                <!-- First page -->
-                <li class="page-item">
-                <a href="{{pagination.href.first}}" class="page-link">
-                    <i class="material-symbols-rounded" aria-hidden="true">first_page</i>
-                    <span class="sr-only">First</span> <!-- sr-only = only for screen readers -->
-                </a>
-                </li>
-                <!-- Previous page -->
-                <li class="page-item">
-                <a href="{{pagination.href.previous if pagination.href.previous else ''}}" class="page-link">
-                    <span class="material-symbols-rounded" aria-hidden="true">navigate_before</span>
-                    <span class="sr-only">Previous</span> <!-- sr-only = only for screen readers -->
-                </a>
-                </li>
-                <!-- Pages and ellipses -->
-                <li class="page-item ellipsis d-none d-md-inline-block">
-                    <span class="material-symbols-rounded" aria-hidden="true">more_horiz</span>
-                </li>
-                <!-- Active page item -->
-                <li class="page-item active d-none d-md-inline-block" aria-current="page">
-                <a href="{{page.url}}" class="page-link" tabindex="-1">{{comic.title}}</a>
-                </li>
-                <li class="page-item ellipsis">
-                    <span class="material-symbols-rounded" aria-hidden="true">more_horiz</span>
-                </li>
-                <!-- Next page -->
-                <li class="page-item">
-                <a href="{{pagination.href.next if pagination.href.next else ''}}" class="page-link">
-                    <span class="material-symbols-rounded" aria-hidden="true">navigate_next</span>
-                    <span class="sr-only">Next</span> <!-- sr-only = only for screen readers -->
-                </a>
-                </li>
-                <!-- Last page -->
-                <li class="page-item">
-                <a href="{{pagination.href.last}}" class="page-link">
-                    <span class="material-symbols-rounded" aria-hidden="true">last_page</span>
-                    <span class="sr-only">Last</span> <!-- sr-only = only for screen readers -->
-                </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <nav class="hbox center" aria-label="Comic Navigation">
+            <!-- First page -->
+            <a href="{{pagination.href.first}}" class="page-link">
+                <i class="material-symbols-rounded">first_page</i>
+            </a>
+
+            <!-- Previous page -->
+            <a href="{{pagination.href.previous if pagination.href.previous else ''}}" class="page-link">
+                <span class="material-symbols-rounded">navigate_before</span>
+            </a>
+
+            <!-- Pages and ellipses -->
+            <span class="material-symbols-rounded" aria-hidden="true">more_horiz</span>
+
+            <!-- Next page -->
+            <a href="{{pagination.href.next if pagination.href.next else ''}}" class="page-link">
+                <span class="material-symbols-rounded">navigate_next</span>
+            </a>
+
+            <!-- Last page -->
+            <a href="{{pagination.href.last}}" class="page-link">
+                <span class="material-symbols-rounded">last_page</span>
+            </a>
+    </nav>
 </div>

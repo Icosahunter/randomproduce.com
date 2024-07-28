@@ -12,11 +12,9 @@
     <link rel="icon" href="{{site.url}}/images/icon.png">
     <title> {{ title }} </title>
 
-    <!-- Halfmoon CSS -->
-    <link href="{{site.url}}/halfmoonui/css/halfmoon-variables.min.css" rel="stylesheet" />
-
-    <!-- Custom Halfmoon Variables -->
-    <link href="{{site.url}}/custom-variables.css" rel="stylesheet" />
+    <!-- Condensate CSS -->
+    <link href="{{site.url}}/condensate.css" rel="stylesheet" />
+    <link href="{{site.url}}/variables.css" rel="stylesheet" />
 
     <!-- Google Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -26,34 +24,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC">
 
   </head>
-  <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-theme-onload="true">
-    <!-- Modals go here -->
-    <!-- Reference: https://www.gethalfmoon.com/docs/modal -->
-
-    <!-- Page wrapper start -->
-    <div class="page-wrapper with-navbar" data-sidebar-type="full-height">
-      
-      <!-- Sticky alerts (toasts), empty container -->
-      <!-- Reference: https://www.gethalfmoon.com/docs/sticky-alerts-toasts -->
-      <div class="sticky-alerts"></div>
-
-      <nav class="navbar">
-        <!-- Navbar brand -->
-        <a href="{{site.url}}/home/" class="navbar-brand">
-          <img class="hidden-lm" src="{{site.url}}/images/logo.svg" alt="Random Produce" style="height: 4rem; -webkit-filter: invert(1); filter: invert(1);">
-          <img class="hidden-dm" src="{{site.url}}/images/logo.svg" alt="Random Produce" style="height: 4rem;">
-        </a>
+  <body>
+    <div class="vbox fullscreen">
+      <nav class="hbox header">
+          <img id="logo-img" src="{{site.url}}/images/logo.svg" alt="Random Produce" style="height: 4rem;">
       </nav>
-
-      <!-- Content wrapper start -->
-      <div class="content-wrapper">
-        <div class="content">
+      <div class="spacer"></div>
+      <div class="vbox scroll">
           {{ content | safe }}
-        </div>
       </div>
-      <!-- Content wrapper end -->
-
+      <div class="spacer"></div>
+      <div class="hbox footer">
+        <div class="spacer"></div>
+        <p> © Nathaniel Markham </p>
+        <p> --- </p>
+        <p> Made with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/Icosahunter/condensate">Condensate</a></p>
+        <div class="spacer"></div>
+      </div>
     </div>
-    <script src="{{site.url}}/halfmoonui/js/halfmoon.min.js"></script>
   </body>
 </html>

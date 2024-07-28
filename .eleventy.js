@@ -7,9 +7,11 @@ module.exports = function(eleventyConfig) {
       linkify: true
     }
     const markdownLib = markdownIt(markdownItOptions).use(markdownItAttrs)
-    eleventyConfig.addPassthroughCopy('halfmoonui');
-    eleventyConfig.addPassthroughCopy('images');
-    eleventyConfig.addPassthroughCopy('custom-variables.css');
+    eleventyConfig.addPassthroughCopy('condensate.css');
+    eleventyConfig.addPassthroughCopy('assets');
+    eleventyConfig.addPassthroughCopy('comic-img');
+    eleventyConfig.addPassthroughCopy('comic-html');
+    eleventyConfig.addPassthroughCopy('variables.css');
     eleventyConfig.setNunjucksEnvironmentOptions({
       throwOnUndefined: true,
       autoescape: false, // warning: don’t do this!

@@ -461,7 +461,7 @@
         "slug": "snowglobe",
         "date": "2018-05-01",
         "title": "Snowglobe",
-        "image": "",
+        "image": "SnowGlobe.gif",
         "hashtags": [
             "building",
             "factory",
@@ -2374,9 +2374,9 @@
         ]
     },
     {
-        "slug": "%f0%9d%94%97%f0%9d%94%a5%f0%9d%94%a6%f0%9d%94%b0-%f0%9d%95%80%f0%9d%95%a4-%f0%9d%90%80-%c8%b6%c9%a8%c8%b6%ca%9f%c9%9b",
+        "slug": "this-is-a-title",
         "date": "2019-03-08",
-        "title": "%F0%9D%94%97%F0%9D%94%A5%F0%9D%94%A6%F0%9D%94%B0 %F0%9D%95%80%F0%9D%95%A4 %F0%9D%90%80 %C8%B6%C9%A8%C8%B6%Ca%9F%C9%9B",
+        "title": "𝔗𝔥𝔦𝔰 𝕀𝕤 𝐀 ȶɨȶʟɛ",
         "image": "1103838336278515713-D1GfHbbWsAELfqM.jpg",
         "hashtags": [
             "cryptic",
@@ -3702,6 +3702,13 @@
             "testtubes",
             "thursday"
         ]
+    },
+    {
+        "slug": "random-machine-console",
+        "date": "2020-05-21",
+        "title": "Random Machine - V1.1.1",
+        "html": "random-machine.html",
+        "hashtags": []
     },
     {
         "slug": "solitaire",
