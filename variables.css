@@ -21,13 +21,26 @@
     font-family: 'Patrick Hand SC', sans-serif;
   }
 
-  #comic-hashtags {
-    width: 40vw;
+  @media (min-aspect-ratio: 1) {
+    #comic-content-container {
+        height: 60vh;
+        width: 50vw;
+    }
+    #comic-content {
+        height: 100%;
+    }
   }
 
-  #comic-content {
-    height: 50vh;
+  @media (max-aspect-ratio: 1) {
+    #comic-content-container {
+        width: 80vw;
+    }
+    #comic-content {
+        width: 100%;
+    }
   }
+
+
 
   @media (prefers-color-scheme: dark) {
     #logo-img {
