@@ -10,27 +10,25 @@ eleventyComputed:
   title: "{{comic.title}}"
 ---
 
-<div class="vbox card center">
+<div class="vbox card">
     <div class="hbox header">
     <h3 id="comic-title">{{comic.title}}</h3>
     <div class="spacer"></div>
-    <p id="comic-date">{{comic.date}}</p>
+    <p id="comic-date" class="center">{{comic.date}}</p>
     </div>
 
-    <div id="comic-content-container" class="vbox">
-        {% if comic.image %}
-            <img id="comic-content" class="center" src="{{site.url}}/comic-img/{{comic.image}}">
-        {% elif comic.html %}
-            <iframe id="comic-content" class="center" src="{{site.url}}/comic-html/{{comic.html}}"></iframe>
-            <a class="center" href="{{site.url}}/comic-html/{{comic.html}}"> fullscreen </a>
-        {% endif %}
+    {% if comic.image %}
+        <img id="comic-content" class="center" src="{{site.url}}/comic-img/{{comic.image}}">
+    {% elif comic.html %}
+        <iframe id="comic-content" class="center" src="{{site.url}}/comic-html/{{comic.html}}"></iframe>
+        <a class="center" href="{{site.url}}/comic-html/{{comic.html}}"> fullscreen </a>
+    {% endif %}
 
-        <p id="comic-hashtags">
-            {% for tag in comic.hashtags %}
-                #{{tag}}{{',' if not loop.last}}
-            {% endfor %}
-        </p>
-    </div>
+    <p id="comic-hashtags">
+        {% for tag in comic.hashtags %}
+            #{{tag}}{{',' if not loop.last}}
+        {% endfor %}
+    </p>
 
     <nav class="hbox center" aria-label="Comic Navigation">
             <!-- First page -->

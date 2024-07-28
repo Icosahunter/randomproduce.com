@@ -2,7 +2,7 @@
     --font-family: 'Caveat Brush', sans-serif;
     --mono-font-family: monospace;
     --dm-bg-color: #070707;
-    --dm-bg2-color: #151515;
+    --dm-bg2-color: #1C1C1C;
     --dm-fg-color: #ff61a3;
     --dm-primary-color: #ff61a3;
     --dm-border-color: #111;
@@ -17,30 +17,38 @@
     --lm-check-color: var(--lm-bg-color);
   }
 
+  h1 {
+    align-self: center;
+  }
+
   h3 {
     font-family: 'Patrick Hand SC', sans-serif;
   }
 
-  @media (min-aspect-ratio: 1) {
-    #comic-content-container {
-        height: 60vh;
-        width: 50vw;
+  @media (min-aspect-ratio: 1.2) {
+    #content-container {
+        width: 60vw;
     }
     #comic-content {
-        height: 100%;
+        height: calc(50vh);
+    }
+    .desktop-hidden {
+        display: none;
     }
   }
 
-  @media (max-aspect-ratio: 1) {
-    #comic-content-container {
-        width: 80vw;
+  @media (max-aspect-ratio: 1.2) {
+    #content-container {
+        padding-right: 2em;
+        padding-left: 2em;
     }
     #comic-content {
-        width: 100%;
+        width: 80%;
+    }
+    .mobile-hidden {
+        display: none;
     }
   }
-
-
 
   @media (prefers-color-scheme: dark) {
     #logo-img {
