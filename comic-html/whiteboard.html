@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html id="page">
+<body>
+
+<canvas id="drawCanvas" width="440" height="250" style="position: absolute; left: 30px; top: 30px; z-index: -1;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<img src="http://randomproduce.com/wp-content/uploads/2019/07/IMG_3385.png" width="500" height="300" style="position: absolute; left: 0px; z-index: 1; pointer-events: none">
+
+<img id="marker" src="http://randomproduce.com/wp-content/uploads/2019/07/IMG_3384.png" width="30" height="30" style="position: absolute; left: 80px; top: 325px; z-index: 1;" onmousedown="markerClick()">
+
+<img id="eraser" src="http://randomproduce.com/wp-content/uploads/2019/07/IMG_3383.png" width="40" height="40" style="position: absolute; left: 20px; top: 320px; z-index: 1;" onmousedown="eraserClick()">
+
+<p style="position: absolute; top: 700px; z-index: 1">Version 1.1.0</p>
+
+<script>
+	var drawType = "none";
+	var draw = false;
+	var count = 0;
+	var c = document.getElementById("drawCanvas");
+	var ctx = c.getContext("2d");
+	var lastX = 0;
+	var lastY = 0;
+
+    ctx.globalCompositeOperation  = "source-over";
+    
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, c.width, c.height);
+    
+	ctx.lineWidth = 5;
+	ctx.milterLimit = 5;
+	ctx.lineCap = "round";
+	ctx.moveTo(0,0);
+    
+    var marker = document.getElementById("marker");
+    var eraser = document.getElementById("eraser");
+    var page = document.getElementById("page");
+    var outside = document.getElementById("outside");
+
+	c.ontouchmove = c.onmousemove = function(e)
+	{
+    	var x = e.pageX - this.offsetLeft;
+		var y = e.pageY - this.offsetTop;
+        
+		if(draw == true && drawType != "none")
+		{	
+			var avgX = (x + lastX) / 2;
+			var avgY = (y + lastY) / 2;
+ 	   		ctx.lineTo(avgX, avgY);
+ 	   		ctx.stroke();
+			lastX = x;
+			lastY = y;
+	   	}
+	}
+    
+   	page.ontouchmove = page.onmousemove = function(e)
+    {
+		var x = e.pageX - this.offsetLeft;
+		var y = e.pageY - this.offsetTop;
+    
+       	if (drawType == "marker")
+       	{
+       		marker.style.left = (x-28).toString() + "px";
+       		marker.style.top = y.toString() + "px";
+       	}
+       	else if (drawType == "eraser")
+       	{
+       	 	eraser.style.left = (x-15).toString() + "px";
+       	 	eraser.style.top = (y-10).toString() + "px";
+       	}
+    }
+    
+	c.ontouchend = c.onmouseup = function(e)
+	{
+		draw = false;
+        ctx.stopPath();
+	}
+    
+	c.ontouchstart = c.onmousedown = function(e)
+	{
+		var x = e.pageX - this.offsetLeft;
+		var y = e.pageY - this.offsetTop;
+ 		lastX = x;
+		lastY = y;
+		draw = true;
+        if(drawType == "marker")
+        {
+        	ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = "#000000";
+        }
+        
+        if(drawType == "eraser")
+        {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+			ctx.lineWidth = 20;
+            ctx.strokeStyle = "#FFFFFF";
+        }
+	}
+    
+    function eraserClick()
+    {
+    	if(drawType != "eraser")
+        {
+    		drawType = "eraser";
+            marker.style.left = "80px";
+        	marker.style.top = "325px";
+            marker.style.zIndex = "2";
+            eraser.style.zIndex = "1";
+            eraser.style.pointerEvents = "none";
+            marker.style.pointerEvents = "auto";
+            ctx.endPath();
+        }
+    }
+    
+    function markerClick()
+    {
+    	if(drawType != "marker")
+        {
+    		drawType = "marker";
+        	eraser.style.left = "20px";
+        	eraser.style.top = "320px";
+            eraser.style.zIndex = "2";
+            marker.style.zIndex = "1";
+            marker.style.pointerEvents = "none";
+            eraser.style.pointerEvents = "auto";
+            ctx.endPath();
+        }
+    }
+    
+    function dropUtensil()
+    {
+        drawType = "none";
+        eraser.style.left = "20px";
+        eraser.style.top = "320px";
+        marker.style.left = "80px";
+        marker.style.top = "325px";
+            
+        eraser.style.zIndex = "1";
+        marker.style.zIndex = "1";
+            
+        eraser.style.pointerEvents = "auto";
+        marker.style.pointerEvents = "auto";
+    }
+</script>
+</body>
+</html>

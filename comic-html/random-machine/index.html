@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      body{
+        background-color: #222;
+      }
+      .compField{
+        background-color: #000;
+        color: #FFF;
+      }
+
+      .altCompField{
+        background-color: #FFF;
+        color: #000;
+      }
+
+      #console_box{
+        width: min-content;
+        width: -moz-min-content;
+        width: -webkit-min-content;
+        height: min-height;
+        height: -mos-min-content;
+        height: -webkit-min-content;
+        margin: auto;
+        margin-top: 10%;
+      }
+
+      #console{
+         resize: none;
+         overflow: hidden;
+         border: none;
+         outline: none;
+      }
+
+      #console_input{
+        resize:none;
+        overflow:hidden;
+        border:none;
+        outline:none;
+      }
+
+      #mobile_warning{
+        visibility: visible;
+        color: #555;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <p id="mobile_warning"> Random Machine does not work on mobile currently </p>
+    <div id="console_box" class="compField">
+      <textarea id="console" class="compField" cols="30" rows="13" onclick="consoleClick()" readonly="true"></textarea>
+      <textarea id="console_input" class="compField" cols="30" rows="1" onKeyUp="inputKeyUp(event)"></textarea>
+    </div>
+
+    <script>
+
+      var con = document.getElementById("console");
+      var con_input = document.getElementById("console_input");
+      var con_box = document.getElementById("console_box");
+      var disk_list = ["cave_explorer.exe"];
+      var scale = "_▂▃▅▆▇";
+      var nums = "1234567890";
+      var dtxt = "";
+      var recent_commands = [];
+      var recent_cmd_i = 0;
+      var blocks = [];
+      var backBlocks = [];
+      var cavRunning = false;
+      var explorerPos = 4;
+      var cavMsg = "";
+      var cavInventory = [];
+      var foundIt = false;
+      var steps = 0;
+      var cavEnd = false;
+      var cavAlt = false;
+      var win = false;
+      var gen = false;
+      var hasArtif = false;
+      var areaNum = 0;
+      var seize = false;
+
+      window.onload = function setup(e)
+      {
+        setInterval(dispDChar, 30);
+        dramaTxt('Random Machine V1.1.1\n', 3);
+      }
+
+      function consoleClick(e)
+      {
+     	  con.blur();
+        con_input.focus();
+      }
+
+      function inputKeyUp(e)
+      {
+        if(cavRunning)
+        {
+          cavKeyUpHandle(e);
+        }
+        else
+        {
+          normalKeyUpHandle(e);
+        }
+      }
+
+      function normalKeyUpHandle(e)
+      {
+        if (e.keyCode == 13)
+        {
+          parseInput(con_input.value);
+        }
+
+        if (e.keyCode == 40)
+        {
+          getRecentCmd(1);
+        }
+
+        if (e.keyCode == 38)
+        {
+          getRecentCmd(-1);
+        }
+      }
+
+      function addRecentCmd(e)
+      {
+        if (recent_commands.slice(-1) != e.trim() && /\S/.test(e))
+        {
+          recent_commands.push(e.trim());
+        }
+      }
+
+      function getRecentCmd(e)
+      {
+        if (recent_commands.length > 0)
+        {
+          recent_cmd_i = recent_cmd_i + e;
+          if (recent_cmd_i > recent_commands.length || recent_cmd_i < 0)
+          {
+            recent_cmd_i = recent_commands.length - 1;
+          }
+          con_input.value = recent_commands[recent_cmd_i];
+        }
+      }
+
+      function parseInput(e)
+      {
+    		con_input.value="";
+        addRecentCmd(e);
+      	switch(e)
+        {
+        	case "help\n": display(">> help \n commands:\n disk\n exec\n clear\n log\n");
+          break;
+          case "disk\n": showDisk();
+          break;
+          case "clear\n": clearC();
+          break;
+          case "exec cave_explorer.exe\n": cavExpExe();
+          break;
+          case "log\n": showLog();
+          break;
+        }
+
+        con.scrollTop = con.scrollHeight;
+      }
+
+      function display(e)
+      {
+    		con.value += e.toString();
+      }
+
+      function darr(v, i, a)
+      {
+    		display(" " + v);
+      }
+
+      function clearC()
+      {
+    		con.value = "";
+      }
+
+      function showDisk()
+      {
+    		display(">> disk \n");
+    		disk_list.forEach(darr);
+        display("\n");
+      }
+
+      function showLog()
+      {
+        display(">> log\n");
+        display("       -- 5/21/2020 --\n\n")
+        display(" V1.0.0  : -first release\n");
+        display(" V1.0.1  : -fixed encoding\n" +
+                "            issue\n");
+        display(" V1.0.2  : -fixed lingering\n" +
+                "            background effect\n" +
+                "            from cave explorer\n");
+        display(" V1.1.0  : -fixed misc bugs\n" +
+                "           -made artifact\n" +
+                "            visible\n" +
+                "           -changed entity\n");
+        display(" V1.1.1  : -added mobile\n" +
+                "            warning in corner\n");
+      }
+
+      function randExe()
+      {
+        display(">> running 'random.exe'\n");
+        var txt = "";
+        for (i = 0; i < 10; i++)
+        {
+		      txt += randChar();
+        }
+        dramaTxt(txt + "\n");
+      }
+
+      function randChar()
+      {
+    		var k = scale.length;
+        var r = Math.floor(Math.random() * k);
+	      return scale.charAt(r);
+      }
+
+      function cavExpExe()
+      {
+        display(">> running 'cave_explorer.exe'\n");
+        norm();
+        cavRunning = true;
+        blocks = [];
+        backBlocks = [];
+        explorerPos = 4;
+        cavMsg = "";
+        cavInventory = [];
+        foundIt = false;
+        steps = 0;
+        cavEnd = false;
+        cavAlt = false;
+        win = false;
+        gen = false;
+        hasArtif = false;
+        areaNum = 0;
+        doBackBlocksAr();
+        updateBlocksAr();
+        setTimeout(dramaCopyBlocks, 300);
+      }
+
+      function cavKeyUpHandle(e)
+      {
+        if(e.keyCode == 27)
+        {
+          cavRunning = false;
+          norm();
+          clearC();
+          display(">> exited Cave Explorer\n");
+        }
+        if (!seize)
+        {
+          if (win)
+          {
+            if(e.keyCode == 39)
+            {
+              if (explorerPos < con.cols-1)
+              {
+                explorerPos += 1;
+              }
+              updateBlocksAr();
+              copyBlocks();
+            }
+            if(e.keyCode == 37)
+            {
+              if (explorerPos > 0)
+              {
+                explorerPos -= 1;
+              }
+              updateBlocksAr();
+              copyBlocks();
+            }
+            if(e.keyCode == 13)
+            {
+              cavExpExe();
+            }
+          }
+          else if (!foundIt)
+          {
+            if(!cavEnd)
+            {
+              if(e.keyCode == 39)
+              {
+                explorerPos += 1;
+                steps += 1;
+                updateBlocksAr();
+                copyBlocks();
+              }
+              if(e.keyCode == 37)
+              {
+                explorerPos -= 1;
+                steps += 1;
+                updateBlocksAr();
+                copyBlocks();
+              }
+              if (areaNum == 8 && explorerPos == 6 && hasArtif == false)
+              {
+                seize = true;
+                hasArtif = true;
+                displayCavMsg("you found an artifact!")
+                setTimeout(unsieze, 1000);
+              }
+              if(!cavAlt)
+              {
+                if(steps == 20)
+                {
+                  seize = true;
+                  displayCavMsg("There's a breeze...");
+                  setTimeout(unsieze, 1000);
+                }
+                if(steps == 80)
+                {
+                  seize = true;
+                  displayCavMsg("Did you hear that?");
+                  setTimeout(unsieze, 1000);
+                }
+                if(steps == 120)
+                {
+                  seize = true;
+                  displayCavMsg("There's something here...");
+                  setTimeout(unsieze, 1000);
+                }
+                if(steps == 200)
+                {
+                  seize = true;
+                  displayCavMsg("The air is chilly...");
+                  setTimeout(unsieze, 1000);
+                }
+                if(steps == 290)
+                {
+                  seize = true;
+                  displayCavMsg("There are footsteps...");
+                  setTimeout(unsieze, 1000);
+                }
+              }
+              else
+              {
+                if(steps == 20)
+                {
+                  seize = true;
+                  displayCavMsg("It's so bright here...");
+                  setTimeout(unsieze, 1000);
+                }
+                if(steps == 80)
+                {
+                  seize = true;
+                  displayCavMsg("Did you hear that?");
+                  setTimeout(unsieze, 1000);
+                }
+                if(steps == 120)
+                {
+                  seize = true;
+                  displayCavMsg("I think it's out there...");
+                  setTimeout(unsieze, 1000);
+                }
+                if(steps == 200)
+                {
+                  seize = true;
+                  displayCavMsg("It's still cold...");
+                  setTimeout(unsieze, 1000);
+                }
+                if(steps == 290)
+                {
+                  seize = true;
+                  displayCavMsg("The footsteps again...");
+                  setTimeout(unsieze, 1000);
+                }
+              }
+              if(steps >= 10*con.cols)
+              {
+                foundIt = true;
+                updateBlocksAr();
+                copyBlocks();
+                steps = 0;
+                if(!cavAlt)
+                {
+                  if (explorerPos < 6)
+                  {
+                    seize = true;
+                    displayCavMsg("an entity appears...");
+                    setTimeout(displayCavMsg, 1000, "[🠄] run   [🠆] approach");
+                    setTimeout(unsieze, 1000);
+                  }
+                  else
+                  {
+                    seize = true;
+                    displayCavMsg("an entity appears...");
+                    setTimeout(displayCavMsg, 1000, "[🠄] approach   [🠆] run");
+                    setTimeout(unsieze, 1000);
+                  }
+                }
+                else
+                {
+                  if (hasArtif)
+                  {
+                    seize = true;
+                    displayCavMsg("an entity appears...");
+                    setTimeout(displayCavMsg, 1000, "[ENTER] give");
+                    setTimeout(unsieze, 1000);
+                  }
+                  else
+                  {
+                    seize = true;
+                    displayCavMsg("an entity appears...");
+                    setTimeout(displayCavMsg, 1000, "[ENTER] ...");
+                    setTimeout(unsieze, 1000);
+                  }
+                }
+              }
+            }
+          }
+          else
+          {
+            if(!cavAlt)
+            {
+              if(e.keyCode == 39)
+              {
+                foundIt = false;
+                if(explorerPos < 6)
+                {
+                  alter();
+                  clearC();
+                  updateBlocksAr();
+                  setTimeout(copyBlocks, 300);
+                }
+                else
+                {
+                  sieze = true;
+                  displayCavMsg("It's following!");
+                  setTimeout(unsieze, 1000);
+                  setTimeout(endGame, 1000);
+                }
+              }
+              if(e.keyCode == 37)
+              {
+                foundIt = false;
+                if(explorerPos < 6)
+                {
+                  sieze = true;
+                  displayCavMsg("It's following!");
+                  setTimeout(unsieze, 1000);
+                  setTimeout(endGame, 1000);
+                }
+                else
+                {
+                  alter();
+                  clearC();
+                  updateBlocksAr();
+                  setTimeout(copyBlocks, 300);
+                }
+              }
+            }
+            else
+            {
+              if(e.keyCode == 13)
+              {
+                foundIt = false;
+                if (hasArtif)
+                {
+                  displayCavMsg("you give the artifact");
+                  setTimeout(othEndGame, 1000);
+                }
+                else
+                {
+                  sieze = true;
+                  displayCavMsg("It's approaching!");
+                  setTimeout(unsieze, 1000);
+                  setTimeout(endGame, 1000);
+                }
+              }
+            }
+          }
+          if(cavEnd && e.keyCode == 13)
+          {
+            cavExpExe();
+          }
+        }
+      }
+
+      function unsieze()
+      {
+        seize = false;
+      }
+
+      function alter()
+      {
+        con.className = "altCompField";
+        con_input.className = "altCompField";
+        con_box.className = "altCompField";
+        cavAlt = true;
+      }
+
+      function norm()
+      {
+        con.className = "compField";
+        con_input.className = "compField";
+        con_box.className = "compField";
+        cavAlt = true;
+      }
+
+      function dramaCopyBlocks()
+      {
+        clearC();
+        for(i=0; i<con.rows; i++)
+        {
+          dramaTxt(blocks[i] + '\n');
+        }
+      }
+
+      function copyBlocks()
+      {
+        clearC();
+        for(i=0; i<con.rows; i++)
+        {
+          display(blocks[i] + '\n');
+        }
+      }
+
+      function doBackBlocksAr()
+      {
+        //Init row strings
+        for(i=0; i<con.rows; i++)
+        {
+          backBlocks[i] = "";
+        }
+
+        backBlocks[0] = "█ ESC to Exit "
+        L = backBlocks[0].length;
+
+        //Do top bar
+        for(i=0; i<con.cols - L; i++)
+        {
+          backBlocks[0] += "█";
+        }
+
+        //Do ceiling & ground
+        for(i=0; i<con.cols; i++)
+        {
+          s = getStalagmite();
+          backBlocks[1] += s.charAt(0);
+          backBlocks[2] += s.charAt(1);
+          backBlocks[3] += s.charAt(2);
+
+          g = getGround();
+          backBlocks[con.rows - 2] += g.charAt(0);
+          backBlocks[con.rows - 1] += g.charAt(1);
+        }
+      }
+
+      function updateBlocksAr()
+      {
+        if (explorerPos >= con.cols)
+        {
+          explorerPos = 1;
+          doBackBlocksAr();
+          areaNum += 1;
+        }
+        else if (explorerPos < 0)
+        {
+          explorerPos = con.cols - 2;
+          doBackBlocksAr();
+          areaNum -= 1;
+        }
+
+        for(i=0; i<con.rows; i++)
+        {
+          blocks[i] = "";
+        }
+
+        for(i=0; i<con.rows; i++)
+        {
+          for(j=0; j<con.cols; j++)
+          {
+            if (areaNum == 8 && i == con.rows-2 && j == 6 && hasArtif == false)
+            {
+              blocks[i] += "⧆";
+            }
+            else if (i == con.rows-2 && j == explorerPos)
+            {
+              blocks[i] += "▒";
+            }
+            else if (foundIt && i == con.rows-2 && explorerPos < 8 && j == con.cols - 4 && !win)
+            {
+              blocks[i] += "⪓";
+            }
+            else if (foundIt && i == con.rows-2 && explorerPos >= 8 && j == 4 && !win)
+            {
+              blocks[i] += "⪓";
+            }
+            else if (i == con.rows - 5)
+            {
+              if (j < 5)
+              {
+                blocks[i] += " ";
+              }
+              else if (cavMsg.length >= j-5)
+              {
+                blocks[i] += cavMsg.charAt(j-5);
+              }
+            }
+            else
+            {
+              if (backBlocks[i].length >= j-1)
+              {
+                blocks[i] += backBlocks[i].charAt(j);
+              }
+            }
+          }
+        }
+      }
+
+      function getStalagmite()
+      {
+        var r = Math.floor(Math.random() * 15);
+        switch(r)
+        {
+          case 0: case 1:
+          return "▀  ";
+          break;
+          case 2: case 3: case 4: case 5: case 6: case 7:
+          return "█  ";
+          break;
+          case 8: case 9: case 10:
+          return "█▀ ";
+          break;
+          case 11: case 12: case 13:
+          return "██ ";
+          break;
+          case 14: case 15:
+          return "██▀";
+          break;
+        }
+      }
+
+      function displayCavMsg(str)
+      {
+        cavMsg = str;
+        updateBlocksAr();
+        copyBlocks();
+        cavMsg = "";
+      }
+
+      function getGround2()
+      {
+        var r = Math.floor(Math.random() * 3);
+        switch(r)
+        {
+          case 0: return "╷█"
+          case 1: return "╻█"
+          case 2: return "╽█"
+        }
+      }
+
+      function getGround()
+      {
+        var r = Math.floor(Math.random() * 3);
+        switch(r)
+        {
+          case 0: return " █"
+          case 1: return "_█"
+          case 2: return "▄█"
+        }
+      }
+
+      function othEndGame()
+      {
+        cavEnd = true;
+        win = true;
+        clearC();
+        alter();
+        setTimeout(dispOthEnd, 500);
+      }
+
+      function endGame()
+      {
+         cavEnd = true;
+         clearC();
+         alter();
+         setTimeout(dispNormEnd, 500);
+      }
+
+      function dispNormEnd()
+      {
+        norm();
+        end = ["  ─╥─ ╥ ╥ ╥─  ╥─ ╥ ╥ ╥─┐",
+               "   ║  ╟─╢ ╟─  ╟─ ║\\║ ║ │",
+               "   ╨  ╨ ╨ ╨─  ╨─ ╨ ╨ ╨─┘",
+               "    [ENTER] to restart  ",]
+         for(i=0; i<con.rows; i++)
+         {
+           blocks[i] = backBlocks[i]
+         }
+         blocks[6] = end[0];
+         blocks[7] = end[1];
+         blocks[8] = end[2];
+         blocks[9] = end[3];
+         dramaCopyBlocks();
+      }
+
+      function dispOthEnd()
+      {
+        end = ["  ─╥─ ╥ ╥ ╥─  ╥─ ╥ ╥ ╥─┐",
+               "   ║  ╟─╢ ╟─  ╟─ ║\\║ ║ │",
+               "   ╨  ╨ ╨ ╨─  ╨─ ╨ ╨ ╨─┘",
+               "    [ENTER] to restart  ",]
+         for(i=0; i<con.rows; i++)
+         {
+           backBlocks[i] = "";
+         }
+         for(i=0; i<con.cols; i++)
+         {
+           g = getGround2();
+           backBlocks[con.rows - 2] += g.charAt(0);
+           backBlocks[con.rows - 1] += g.charAt(1);
+         }
+         backBlocks[0] = " ESC to exit";
+         backBlocks[4] = end[0];
+         backBlocks[5] = end[1];
+         backBlocks[6] = end[2];
+         backBlocks[7] = end[3];
+         updateBlocksAr();
+         dramaCopyBlocks();
+      }
+
+      function dramaTxt(e)
+      {
+        dtxt += e;
+      }
+
+      function dispDChar()
+      {
+        display(dtxt.charAt(0));
+        dtxt = dtxt.substring(1, dtxt.length);
+      }
+
+      function replaceAt(str, index, newchar)
+      {
+        return str.substring(0, index - 1) + newchar + str.substring(index + 1, str.length);
+      }
+
+    </script>
+  </body>
+</html>
