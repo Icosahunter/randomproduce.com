@@ -30,7 +30,7 @@
         width: 60vw;
     }
     #comic-content {
-        height: calc(50vh);
+        height: 50vh;
     }
     .desktop-hidden {
         display: none;
