@@ -278,10 +278,15 @@ body {
 3.  Typography [sec-03]
 -------------------------------------------------------------------------------
 */
+
 p {
   text-align: justify;
   text-justify: distribute;
 }
+
+a {
+    color: var(--fg-color);
+  }
 
 h1 {
   font-size: calc(2.5 * var(--font-size));
@@ -327,6 +332,7 @@ code, kbd {
 -------------------------------------------------------------------------------
 */
 select, textarea, input:not([type=checkbox], [type=radio], [type=range]), button, .button {
+  color: var(--font-color);
   border-radius: var(--border-radius);
   background: var(--fg-color);
   padding-top: calc(0.4 * var(--spacing));

@@ -27,53 +27,55 @@
   <body>
     <div class="vbox fullscreen">
       <nav class="hbox header">
-          <img id="logo-img" src="https://randomproduce.com/assets/logo.svg" alt="Random Produce" style="height: 4rem;">
+          <a href="https://randomproduce.com/">
+            <img id="logo-img" src="https://randomproduce.com/assets/logo.svg" alt="Random Produce" style="height: 4rem;">
+          </a>
+          <div class="spacer"></div>
+          <a class="center button" href="https://randomproduce.com/about/">About</a>
       </nav>
       <div class="spacer"></div>
-      <div class="vbox scroll">
+      <div  id="content-container" class="vbox scroll center">
           
-<div class="vbox card center">
+<div class="vbox card">
     <div class="hbox header">
     <h3 id="comic-title">Terraformer</h3>
     <div class="spacer"></div>
-    <p id="comic-date">2018-06-19</p>
+    <p id="comic-date" class="center">2018-06-19</p>
     </div>
 
-    <div id="comic-content-container" class="vbox">
-        
-            <img id="comic-content" class="center" src="https://randomproduce.com/comic-img/1075159092392550407-Duu7fsJXgAANAF0.jpg">
-        
+    
+        <img id="comic-content" class="center" src="https://randomproduce.com/comic-img/1075159092392550407-Duu7fsJXgAANAF0.jpg">
+    
 
-        <p id="comic-hashtags">
-            
-                #duster,
-            
-                #explosion,
-            
-                #featherduster,
-            
-                #grass,
-            
-                #grate,
-            
-                #green,
-            
-                #off,
-            
-                #on,
-            
-                #plants,
-            
-                #shrubbery,
-            
-                #switch,
-            
-                #terraformer,
-            
-                #vines
-            
-        </p>
-    </div>
+    <p id="comic-hashtags">
+        
+            #duster,
+        
+            #explosion,
+        
+            #featherduster,
+        
+            #grass,
+        
+            #grate,
+        
+            #green,
+        
+            #off,
+        
+            #on,
+        
+            #plants,
+        
+            #shrubbery,
+        
+            #switch,
+        
+            #terraformer,
+        
+            #vines
+        
+    </p>
 
     <nav class="hbox center" aria-label="Comic Navigation">
             <!-- First page -->
@@ -104,9 +106,10 @@
       <div class="spacer"></div>
       <div class="hbox footer">
         <div class="spacer"></div>
-        <p> © Nathaniel Markham </p>
-        <p> --- </p>
-        <p> Made with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/Icosahunter/condensate">Condensate</a></p>
+        <p style="text-align: center;"> © Nathaniel Markham 
+        <span class="mobile-hidden"> --- </span>
+        <br class="desktop-hidden">
+        Made with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/Icosahunter/condensate">Condensate</a></p>
         <div class="spacer"></div>
       </div>
     </div>

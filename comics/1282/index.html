@@ -27,67 +27,69 @@
   <body>
     <div class="vbox fullscreen">
       <nav class="hbox header">
-          <img id="logo-img" src="https://randomproduce.com/assets/logo.svg" alt="Random Produce" style="height: 4rem;">
+          <a href="https://randomproduce.com/">
+            <img id="logo-img" src="https://randomproduce.com/assets/logo.svg" alt="Random Produce" style="height: 4rem;">
+          </a>
+          <div class="spacer"></div>
+          <a class="center button" href="https://randomproduce.com/about/">About</a>
       </nav>
       <div class="spacer"></div>
-      <div class="vbox scroll">
+      <div  id="content-container" class="vbox scroll center">
           
-<div class="vbox card center">
+<div class="vbox card">
     <div class="hbox header">
     <h3 id="comic-title">1282</h3>
     <div class="spacer"></div>
-    <p id="comic-date">2020-06-26</p>
+    <p id="comic-date" class="center">2020-06-26</p>
     </div>
 
-    <div id="comic-content-container" class="vbox">
-        
-            <img id="comic-content" class="center" src="https://randomproduce.com/comic-img/1276558534239551488-Ebc_OKXWoAEW8Pu.png">
-        
+    
+        <img id="comic-content" class="center" src="https://randomproduce.com/comic-img/1276558534239551488-Ebc_OKXWoAEW8Pu.png">
+    
 
-        <p id="comic-hashtags">
-            
-                #apps,
-            
-                #bar,
-            
-                #battery,
-            
-                #bin,
-            
-                #computer,
-            
-                #desktop,
-            
-                #dimensional,
-            
-                #eternal,
-            
-                #fluctuations,
-            
-                #folder,
-            
-                #loading,
-            
-                #mathy,
-            
-                #photos,
-            
-                #pineapple,
-            
-                #quantum,
-            
-                #settings,
-            
-                #signal,
-            
-                #subroutine,
-            
-                #time,
-            
-                #void
-            
-        </p>
-    </div>
+    <p id="comic-hashtags">
+        
+            #apps,
+        
+            #bar,
+        
+            #battery,
+        
+            #bin,
+        
+            #computer,
+        
+            #desktop,
+        
+            #dimensional,
+        
+            #eternal,
+        
+            #fluctuations,
+        
+            #folder,
+        
+            #loading,
+        
+            #mathy,
+        
+            #photos,
+        
+            #pineapple,
+        
+            #quantum,
+        
+            #settings,
+        
+            #signal,
+        
+            #subroutine,
+        
+            #time,
+        
+            #void
+        
+    </p>
 
     <nav class="hbox center" aria-label="Comic Navigation">
             <!-- First page -->
@@ -118,9 +120,10 @@
       <div class="spacer"></div>
       <div class="hbox footer">
         <div class="spacer"></div>
-        <p> © Nathaniel Markham </p>
-        <p> --- </p>
-        <p> Made with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/Icosahunter/condensate">Condensate</a></p>
+        <p style="text-align: center;"> © Nathaniel Markham 
+        <span class="mobile-hidden"> --- </span>
+        <br class="desktop-hidden">
+        Made with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/Icosahunter/condensate">Condensate</a></p>
         <div class="spacer"></div>
       </div>
     </div>

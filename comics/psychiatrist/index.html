@@ -27,61 +27,63 @@
   <body>
     <div class="vbox fullscreen">
       <nav class="hbox header">
-          <img id="logo-img" src="https://randomproduce.com/assets/logo.svg" alt="Random Produce" style="height: 4rem;">
+          <a href="https://randomproduce.com/">
+            <img id="logo-img" src="https://randomproduce.com/assets/logo.svg" alt="Random Produce" style="height: 4rem;">
+          </a>
+          <div class="spacer"></div>
+          <a class="center button" href="https://randomproduce.com/about/">About</a>
       </nav>
       <div class="spacer"></div>
-      <div class="vbox scroll">
+      <div  id="content-container" class="vbox scroll center">
           
-<div class="vbox card center">
+<div class="vbox card">
     <div class="hbox header">
     <h3 id="comic-title">Psychiatrist</h3>
     <div class="spacer"></div>
-    <p id="comic-date">2018-03-20</p>
+    <p id="comic-date" class="center">2018-03-20</p>
     </div>
 
-    <div id="comic-content-container" class="vbox">
-        
-            <img id="comic-content" class="center" src="https://randomproduce.com/comic-img/1069315932630253575-Dtb5K96WwAAWT9c.png">
-        
+    
+        <img id="comic-content" class="center" src="https://randomproduce.com/comic-img/1069315932630253575-Dtb5K96WwAAWT9c.png">
+    
 
-        <p id="comic-hashtags">
-            
-                #cantaloupe,
-            
-                #certificate,
-            
-                #chair,
-            
-                #childhood,
-            
-                #colors,
-            
-                #different,
-            
-                #fez,
-            
-                #notepad,
-            
-                #paper,
-            
-                #pen,
-            
-                #processing,
-            
-                #produce,
-            
-                #Psychiatrist,
-            
-                #random,
-            
-                #real,
-            
-                #sofa,
-            
-                #stickperson
-            
-        </p>
-    </div>
+    <p id="comic-hashtags">
+        
+            #cantaloupe,
+        
+            #certificate,
+        
+            #chair,
+        
+            #childhood,
+        
+            #colors,
+        
+            #different,
+        
+            #fez,
+        
+            #notepad,
+        
+            #paper,
+        
+            #pen,
+        
+            #processing,
+        
+            #produce,
+        
+            #Psychiatrist,
+        
+            #random,
+        
+            #real,
+        
+            #sofa,
+        
+            #stickperson
+        
+    </p>
 
     <nav class="hbox center" aria-label="Comic Navigation">
             <!-- First page -->
@@ -112,9 +114,10 @@
       <div class="spacer"></div>
       <div class="hbox footer">
         <div class="spacer"></div>
-        <p> © Nathaniel Markham </p>
-        <p> --- </p>
-        <p> Made with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/Icosahunter/condensate">Condensate</a></p>
+        <p style="text-align: center;"> © Nathaniel Markham 
+        <span class="mobile-hidden"> --- </span>
+        <br class="desktop-hidden">
+        Made with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/Icosahunter/condensate">Condensate</a></p>
         <div class="spacer"></div>
       </div>
     </div>
