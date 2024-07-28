@@ -289,27 +289,27 @@ a {
   }
 
 h1 {
-  font-size: calc(2.5 * var(--font-size));
+    font-size: calc(2 * var(--font-size));
 }
 
 h2 {
-  font-size: calc(2.25 * var(--font-size));
+    font-size: calc(1.60 * var(--font-size));
 }
 
 h3 {
-  font-size: calc(2 * var(--font-size));
+    font-size: calc(1.30 * var(--font-size));
 }
 
 h4 {
-  font-size: calc(1.75 * var(--font-size));
+    font-size: calc(1.15 * var(--font-size));
 }
 
 h5 {
-  font-size: calc(1.5 * var(--font-size));
+    font-size: calc(1.15 * var(--font-size));
 }
 
 h6 {
-  font-size: calc(1.25 * var(--font-size));
+    font-size: calc(1.15 * var(--font-size));
 }
 
 ul, ol {
