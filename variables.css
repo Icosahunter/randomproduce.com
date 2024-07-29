@@ -3,13 +3,13 @@
     --mono-font-family: monospace;
     --dm-bg-color: #070707;
     --dm-bg2-color: #1C1C1C;
-    --dm-fg-color: #ff61a3;
+    --dm-fg-color: #333;
     --dm-primary-color: #ff61a3;
-    --dm-border-color: #111;
+    --dm-border-color: #ff61a3;
     --dm-font-color: #ddd;
     --dm-check-color: var(--dm-font-color);
     --lm-bg-color: #fff;
-    --lm-bg2-color: #fafafa;
+    --lm-bg2-color: #f8f8f8;
     --lm-fg-color: #ccc;
     --lm-primary-color: #ff61a3;
     --lm-border-color: #ff61a3;
