@@ -2208,7 +2208,7 @@
         ]
     },
     {
-        "slug": "announcement-10",
+        "slug": "announcement-0",
         "date": "2019-02-05",
         "title": "Announcement",
         "image": "1092580570389991425-DymgPIXVYAAftPh.jpg",
@@ -2480,7 +2480,7 @@
         ]
     },
     {
-        "slug": "announcement-9",
+        "slug": "announcement-1",
         "date": "2019-03-21",
         "title": "Announcement",
         "image": "1108831897252171784-D2NcuvfW0AAX5DO.png",
@@ -2562,7 +2562,7 @@
         ]
     },
     {
-        "slug": "announcement-8",
+        "slug": "announcement-2",
         "date": "2019-04-16",
         "title": "Announcement",
         "image": "1118203474720825344-D4SoIcNX4AE3AHS.jpg",
@@ -2957,7 +2957,7 @@
         ]
     },
     {
-        "slug": "announcement-7",
+        "slug": "announcement-3",
         "date": "2019-06-27",
         "title": "Announcement",
         "image": "1144344510836748290-D-GHQ6YX4AUmYzP.jpg",
@@ -3288,7 +3288,7 @@
         ]
     },
     {
-        "slug": "announcement-6",
+        "slug": "announcement-4",
         "date": "2019-08-30",
         "title": "Announcement",
         "image": "1167317957183074305-EDMlfc1U8AAv89R.jpg",
@@ -3654,14 +3654,14 @@
         ]
     },
     {
-        "slug": "announcement-4",
+        "slug": "announcement-6",
         "date": "2020-02-14",
         "title": "Announcement",
         "image": "1228429948265914373-EQxChldXsAE044S.jpg",
         "hashtags": []
     },
     {
-        "slug": "announcement-3",
+        "slug": "announcement-7",
         "date": "2020-05-07",
         "title": "Announcement",
         "image": "1258507358709272576-EXcdxS7XsAEBZG0.jpg",
@@ -3751,7 +3751,7 @@
         ]
     },
     {
-        "slug": "announcement-2",
+        "slug": "announcement-8",
         "date": "2020-06-02",
         "title": "Announcement",
         "image": "1267959692514545664-EZiynR7XQAMKatO.png",
@@ -3826,7 +3826,7 @@
         ]
     },
     {
-        "slug": "announcement-1",
+        "slug": "announcement-9",
         "date": "2020-06-12",
         "title": "Announcement",
         "image": "1271533007267127296-EaVkhqHXsAMblVN.png",
@@ -4111,10 +4111,17 @@
         ]
     },
     {
-        "slug": "announcement-0",
+        "slug": "announcement-10",
         "date": "2020-07-30",
         "title": "Announcement",
         "image": "1288676359842168832-EeJMUX6WoAAFoE8.png",
+        "hashtags": []
+    },
+    {
+        "slug": "announcement-11",
+        "date": "2024-07-30",
+        "title": "Announcement",
+        "image": "announcement-2024.png",
         "hashtags": []
     }
 ]

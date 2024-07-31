@@ -29,10 +29,20 @@
     font-family: 'Patrick Hand SC', sans-serif;
   }
 
+  #comic-card {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  #comic-content-container {
+    display: table;
+    width: 1px;
+  }
+  #comic-hashtags {
+    display: table-caption;
+    caption-side: bottom;
+  }
+
   @media (min-aspect-ratio: 1.2) {
-    #content-container {
-        width: 60vw;
-    }
     #comic-content {
         height: 50vh;
     }
@@ -42,12 +52,8 @@
   }
 
   @media (max-aspect-ratio: 1.2) {
-    #content-container {
-        padding-right: 2em;
-        padding-left: 2em;
-    }
     #comic-content {
-        width: 80%;
+        width: 60vw;
     }
     .mobile-hidden {
         display: none;
